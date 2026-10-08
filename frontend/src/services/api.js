@@ -1,4 +1,5 @@
-const API_BASE_URL = '/api';
+const rawBase = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE_URL = rawBase.endsWith('/api') ? rawBase : `${rawBase.replace(/\/$/, '')}/api`;
 
 async function handleResponse(response) {
   if (!response.ok) {
